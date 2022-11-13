@@ -1,37 +1,35 @@
+properties = null
+
+def loadProperties() {
+    node {
+        checkout scm
+        properties = readProperties file: 'version.properties'
+        echo "Immediate one ${properties.repo}"
+    }
+}
+
 pipeline {
-  agent { label 'Linux'}
-  options {
-    skipDefaultCheckout(true)
-  }
-  stages{
-    stage('LOAD PROPERTIES FILES') {
-       steps {
-        script {
-        def props = readProperties file: '${WORKSPACE}/version.properties';
-        println("##############")
-        println("${props["terraform.version"]}")
-        } 
+    agent none
+
+    stages {           
+        stage ('prepare') {
+            agent any
+
+            steps {
+                script {
+                    loadProperties()
+                    echo "Later one ${properties.version}"
+                }
+            }
+        }
+        stage('Build') {
+
+            agent any
+
+            steps {
+                echo properties.version
+            }
+
         }
     }
-    stage('clean workspace') {
-      steps {
-        cleanWs()
-      }
-    }
-    stage('checkout') {
-      steps {
-        checkout scm
-      }
-    }
-    stage('terraform') {
-      steps {
-        sh './terraformw apply -auto-approve -no-color'
-      }
-    }
-  }
-  post {
-    always {
-      cleanWs()
-    }
-  }
 }
