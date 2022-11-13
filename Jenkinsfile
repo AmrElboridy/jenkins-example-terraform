@@ -8,6 +8,7 @@ pipeline {
     stage('clean workspace') {
       steps {
         cleanWs()
+       echo "Echo "${props["terraform.version"]}" now .."
       }
     }
     stage('checkout') {
@@ -18,7 +19,6 @@ pipeline {
     stage('terraform') {
       steps {
         sh './terraformw apply -auto-approve -no-color'
-        echo "Echo "${props["terraform.version"]}" now .."
       }
     }
   }
