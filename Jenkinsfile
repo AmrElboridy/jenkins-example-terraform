@@ -8,6 +8,7 @@ pipeline {
        steps {
         script {
         def props = readProperties file: 'version.properties'
+        println("##############")
         println("${props["terraform.version"]}")
         } 
         }
