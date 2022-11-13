@@ -5,14 +5,12 @@ pipeline {
   }
   stages{
     stage('LOAD PROPERTIES FILES') {
-      steps {
         def props = readProperties file: 'version.properties'
-      }
+        echo "Echo "${props["terraform.version"]}" now .."
     }
     stage('clean workspace') {
       steps {
         cleanWs()
-       echo "Echo "${props["terraform.version"]}" now .."
       }
     }
     stage('checkout') {
