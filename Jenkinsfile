@@ -3,8 +3,12 @@ pipeline {
   options {
     skipDefaultCheckout(true)
   }
-  props = readProperties(file: 'version.properties')
   stages{
+    stage('LOAD PROPERTIES FILES') {
+      steps {
+        def props = readProperties file: 'version.properties'
+      }
+    }
     stage('clean workspace') {
       steps {
         cleanWs()
