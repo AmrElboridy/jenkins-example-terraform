@@ -3,6 +3,7 @@ pipeline {
   options {
     skipDefaultCheckout(true)
   }
+  props = readProperties(file: 'version.properties')
   stages{
     stage('clean workspace') {
       steps {
@@ -17,6 +18,7 @@ pipeline {
     stage('terraform') {
       steps {
         sh './terraformw apply -auto-approve -no-color'
+        echo "Echo "${props["terraform.version"]}" now .."
       }
     }
   }
