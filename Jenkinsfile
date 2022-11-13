@@ -7,7 +7,7 @@ pipeline {
     stage('LOAD PROPERTIES FILES') {
        steps {
         script {
-        def props = readProperties file: 'version.properties'
+        def props = readProperties file: '${WORKSPACE}/version.properties';
         println("##############")
         println("${props["terraform.version"]}")
         } 
