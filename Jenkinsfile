@@ -13,8 +13,9 @@ pipeline {
                     {
                              def props = readProperties file: "$configFile"
                              def skip_tests = props['amr']
+                                            echo "${skip_tests}"
+
                             }
-                    echo "${skip_tests}"
            
                 }}
         }
