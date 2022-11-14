@@ -1,12 +1,9 @@
-properties = null
-
-def loadProperties() {
-    node {
-        checkout scm
-        properties = readProperties file: 'version.properties'
-        echo "Immediate one ${properties.repo}"
-    }
+configFileProvider([configFile(fileId: "942b1831-e7b4-449a-a275-fbab352226b3", variable: 'configFile')]) {
+     def props = readProperties file: "$configFile"
+     def skip_tests = props['amr']
+     }
 }
+        properties = readProperties file: 'v
 
 pipeline {
     agent none
@@ -18,7 +15,7 @@ pipeline {
             steps {
                 script {
                     loadProperties()
-                    echo "Later one ${properties.version}"
+                    echo "Later one ${skip_tests}"
                 }
             }
         }
@@ -27,7 +24,7 @@ pipeline {
             agent any
 
             steps {
-                echo properties.version
+                echo "${skip_tests}"
             }
 
         }
