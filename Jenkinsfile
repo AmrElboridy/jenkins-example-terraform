@@ -13,7 +13,6 @@ pipeline {
 
             steps {
                 script {
-                    loadProperties()
                     echo "Later one ${skip_tests}"
                 }
             }
