@@ -8,7 +8,7 @@ pipeline {
             agent any
 
             steps {
-                properties = configFileProvider([configFile(fileId: '942b1831-e7b4-449a-a275-fbab352226b3', variable: 'VARS')]) 
+                properties = configFileProvider([configFile(fileId: '942b1831-e7b4-449a-a275-fbab352226b3')]) 
                 script {
                     echo "Later one" properties.vars
                 }
