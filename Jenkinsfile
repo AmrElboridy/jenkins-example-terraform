@@ -9,8 +9,8 @@ pipeline {
 
             steps {
                 script{
-                def properties = configFileProvider([configFile(fileId: '942b1831-e7b4-449a-a275-fbab352226b3')]) 
-                    {def amro = properties.amr}
+                def anr = configFileProvider([configFile(fileId: '942b1831-e7b4-449a-a275-fbab352226b3')]) 
+                    {def amro = anr.amr}
                     echo "${amro}"
            
                 }}
@@ -20,7 +20,7 @@ pipeline {
             agent any
 
             steps {
-                echo properties.aya
+                echo anr.aya
             }
 
         }
