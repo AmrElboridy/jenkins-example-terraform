@@ -1,12 +1,4 @@
-properties = null
 
-def loadProperties() {
-    node {
-        checkout scm
-        properties = readProperties file: 'version.properties'
-        echo "Immediate one ${properties.repo}"
-    }
-}
 
 pipeline {
     agent none
@@ -16,9 +8,9 @@ pipeline {
             agent any
 
             steps {
+                properties = configFileProvider([configFile(fileId: '942b1831-e7b4-449a-a275-fbab352226b3', variable: 'VARS')]) 
                 script {
-                    loadProperties()
-                    echo "Later one ${properties.version}"
+                    echo "Later one" properties.vars
                 }
             }
         }
