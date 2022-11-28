@@ -24,7 +24,7 @@ pipeline {
             agent any
 
             steps {
-                    echo "${skip_tests}"
+                    echo "${z}"
             }
 
         }
