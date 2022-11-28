@@ -24,7 +24,7 @@ pipeline {
             agent any
 
             steps {
-                    echo "${z}"
+                    echo "z"
             }
 
         }
