@@ -21,10 +21,13 @@ pipeline {
         stage('Build') {
 
             agent any
+                steps {
+
                     dir ('Utils') { 
                         sh "chmod a+x script.sh"
                         sh('./script.sh')
                     }
+                }
         }
     }
 }
