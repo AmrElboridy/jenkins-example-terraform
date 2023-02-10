@@ -14,25 +14,17 @@ pipeline {
                              def props = readProperties file: "$configFile"
                              def skip_tests = props['amr']
                                             echo "${skip_tests}"
-
                             }
-           
-                }}
+                      }
+                }
         }
         stage('Build') {
 
             agent any
-
-                     steps {
-                                echo 'Hello, '
-
-                                sh '''#!/bin/bash
-
-                                    echo "Hello from bash"
-                                    echo "Who I'm $SHELL"
-                                '''
-            }
-
+                    dir ('Utils') { 
+                        sh "chmod a+x script.sh"
+                        sh('./script.sh')
+                    }
         }
     }
 }
