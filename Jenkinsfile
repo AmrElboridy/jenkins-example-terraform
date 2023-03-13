@@ -13,7 +13,6 @@ agent any
 
         stage('SCM'){
             steps{
-                checkout scm
                 script {
                                     def propertiesFile = configFileProvider([configFile(fileId: '58578323-8c1f-4e10-af01-f5a53496809c', variable: 'MyPropertiesConfig')]) 
                     {
