@@ -25,13 +25,6 @@ agent any
         }
         stage('tag-image'){
             steps{
-                  def propertiesFile = configFileProvider([configFile(fileId: '58578323-8c1f-4e10-af01-f5a53496809c', variable: 'MyPropertiesConfig')]) { 
-                // Loading variables' values from the property file.
-                  def ips = readProperties file: "$IPs_PropertiesConfig"
-                print "IP = ${ips['IP']}"
-                    }
-                sh 'sudo docker build --build-arg TAG_NAME=$TAG_NAME --build-arg BRANCH_NAME=$BRANCH_NAME -t nginx:$TAG_NAME .'
-            }
 
                 script{
                 def propertiesFile = configFileProvider([configFile(fileId: '58578323-8c1f-4e10-af01-f5a53496809c', variable: 'MyPropertiesConfig')]) 
@@ -44,7 +37,7 @@ agent any
 
                             }
                       }
-
+            }
 
 
         }
