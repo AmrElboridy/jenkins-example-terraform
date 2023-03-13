@@ -1,13 +1,5 @@
 pipeline{
-agent any 
-   environment {
-     BRANCH_NAME = "${GIT_BRANCH.split("/")[1]}"
-     TAG_NAME = sh(returnStdout: true, script: "git describe --tags --abbrev=0").trim()
-     IP = "$env.devserver"
-
-
-  }
-        
+agent any  
     stages{
  
         stage('tag-image'){
