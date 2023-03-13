@@ -58,3 +58,5 @@ agent any
                 echo env.$IP
             }
         }
+    }
+}
