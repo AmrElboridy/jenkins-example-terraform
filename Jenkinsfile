@@ -10,19 +10,6 @@ agent any
         
     stages{
  
-
-        stage('SCM'){
-            steps{
-                checkout scm
-                script {
-            env.TAG_NAME2=sh(returnStdout: true, script: "git tag --contains | head -1").trim()
-        //   echo "$gitTag + from stage"
-          echo "$env.TAG_NAME + from env"
-          echo "$env.TAG_NAME2 + from stage"
-          echo "$env.BRANCH_NAME + from env branch name"
-        }
-            }
-        }
         stage('tag-image'){
             steps{
                     configFileProvider([configFile(fileId: '58578323-8c1f-4e10-af01-f5a53496809c', variable: 'MyPropertiesConfig')]) {
